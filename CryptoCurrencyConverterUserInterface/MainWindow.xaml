@@ -6,7 +6,86 @@
         xmlns:local="clr-namespace:CryptoCurrencyConverterUserInterface"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <ListView>
-        
-    </ListView>
+
+    <TabControl>
+        <TabItem>
+            <TabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>Fiat currency converter</TextBlock>
+                </StackPanel>
+            </TabItem.Header>
+            <Grid Margin="150 20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                <TextBlock Text="Fiat currency converter" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="15"/>
+
+                <TextBlock x:Name="fiatCurrancyFromTextBlock" Text="From" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="30" />
+                <TextBlock x:Name="fiatCurrancyToTextBlock" Text="To" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="0" FontSize="30"/>
+
+                <ComboBox x:Name="fiatCurrancyFromComboBox" Grid.Column="0" Grid.Row="1"></ComboBox>
+                <ComboBox x:Name="fiatCurrancyToComboBox" Grid.Column="2" Grid.Row="1"></ComboBox>
+
+                <StackPanel Grid.Column="1" Grid.Row="2">
+                    <TextBlock Text="1 USD = 0,89 EUR" FontSize="20" HorizontalAlignment="Center" FontStyle="Italic"/>
+                    <TextBox x:Name="fiatCurrancyTextBox" Margin="0 20" Height="30"/>
+                    <Button x:Name="fiatCurrancyConvertButton" Content="Convert" Margin="60 0" Height="30" FontSize="16" FontWeight="DemiBold"/>
+                </StackPanel>
+
+                <TextBlock x:Name="fiatCurrancyResultTextBlock" Text="100 USD = 89 EUR" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" FontSize="28"/>
+
+            </Grid>
+        </TabItem>
+        <TabItem>
+            <TabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>Crypto currency converter</TextBlock>
+                </StackPanel>
+            </TabItem.Header>
+            <Grid Margin="150 20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Crypto currency converter" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="15"/>
+
+                <TextBlock x:Name="cryptoCurrancyFromTextBlock" Text="From" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="30" />
+                <TextBlock x:Name="cryptoCurrancyToTextBlock" Text="To" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="0" FontSize="30"/>
+
+                <ComboBox x:Name="cryptoCurrancyFromComboBox" Grid.Column="0" Grid.Row="1"></ComboBox>
+                <ComboBox x:Name="cryptoCurrancyToComboBox" Grid.Column="2" Grid.Row="1"></ComboBox>
+
+                <StackPanel Grid.Column="1" Grid.Row="2">
+                    <TextBlock Text="1 BTC = 127 LTC" FontSize="20" HorizontalAlignment="Center" FontStyle="Italic" />
+                    <TextBox x:Name="cryptoCurrancyTextBox" Margin="0 20" Height="30"/>
+                    <Button x:Name="cryptoCurrancyConvertButton" Content="Convert" Margin="60 0" Height="30" FontSize="16" FontWeight="DemiBold"/>
+                </StackPanel>
+
+                <TextBlock x:Name="cryptoCurrancyResultTextBlock" Text="10 BTC = 1270 LTC" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" FontSize="28"/>
+
+            </Grid>
+        </TabItem>
+    </TabControl>
+
+
 </Window>
