@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -55,20 +56,27 @@ namespace CryptoCurrencyConverterUserInterface
             FiatCurrencyEnum toEnum = (FiatCurrencyEnum)fiatCurrancyToComboBox.SelectedIndex;
             var inputText = fiatCurrancyTextBox.Text;
 
+            LoadDataAboutFiatCurrencyAsync(fromEnum, toEnum, inputText);
+        }
+
+        private void LoadDataAboutFiatCurrencyAsync(FiatCurrencyEnum fromEnum, FiatCurrencyEnum toEnum, string inputText)
+        {
+            Task.Run(() => LoadDataAboutFiatCurrency(fromEnum, toEnum, inputText));
+        }
+
+        private void LoadDataAboutFiatCurrency(FiatCurrencyEnum fromEnum, FiatCurrencyEnum toEnum, string inputText)
+        {
             if (fromEnum.ToString().Equals(toEnum.ToString()))
             {
-                fiatCurrancyResultTextBlock.Text = $"{inputText} {fromEnum} = {inputText:N} {toEnum}";
+                Dispatcher.Invoke(() => fiatCurrancyResultTextBlock.Text = $"{inputText} {fromEnum} = {inputText:N} {toEnum}");
             }
             else
             {
-                Task.Run(() =>
-                {
-                    fiatCurrencyModel = _uiDataProvider.RecieveDataAboutFiatCurreny(fromEnum);
-                }).Wait();
+                fiatCurrencyModel = _uiDataProvider.RecieveDataAboutFiatCurreny(fromEnum);
 
                 var userInputAmount = double.Parse(inputText, CultureInfo.InvariantCulture);
                 var convertionResult = ConvertCurrency(fromEnum, userInputAmount, toEnum);
-                fiatCurrancyResultTextBlock.Text = $"{userInputAmount:N} {fromEnum} = {convertionResult:N} {toEnum}";
+                Dispatcher.Invoke(() => fiatCurrancyResultTextBlock.Text = $"{userInputAmount:N} {fromEnum} = {convertionResult:N} {toEnum}");
             }
         }
 
