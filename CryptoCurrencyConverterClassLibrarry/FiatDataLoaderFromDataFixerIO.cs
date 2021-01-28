@@ -28,11 +28,6 @@ namespace CryptoCurrencyConverterClassLibrarry
         public async Task<FiatCurrencyModel> LoadDataAboutFiatCurrency(FiatCurrencyEnum baseCurrency)
         {
             string url = urlBase + "base=" + baseCurrency.ToString().Trim();
-            using (var sr = new StreamWriter("urls.txt", true, Encoding.UTF8))
-            {
-                sr.WriteLine(url);
-            }
-
 
             using (HttpResponseMessage response = await httpClient.GetAsync(url))
             {

@@ -1,4 +1,5 @@
 ﻿using CryptoCurrencyConverterClassLibrarry;
+using CryptoCurrencyConverterClassLibrarry.Models;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -15,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 
 namespace CryptoCurrencyConverterUserInterface
 {
@@ -66,9 +68,10 @@ namespace CryptoCurrencyConverterUserInterface
 
         private void LoadAndDisplayDataAboutFiatCurrency(FiatCurrencyEnum fromEnum, FiatCurrencyEnum toEnum, string inputText)
         {
+            
             if (fromEnum.ToString().Equals(toEnum.ToString()))
             {
-                Dispatcher.Invoke(() => fiatCurrancyResultTextBlock.Text = $"{inputText} {fromEnum} = {inputText:N} {toEnum}");
+                Dispatcher.Invoke(() => fiatCurrancyResultTextBlock.Text = $"{double.Parse(inputText):N} {fromEnum} = {double.Parse(inputText):N} {toEnum}");
             }
             else
             {
@@ -79,9 +82,27 @@ namespace CryptoCurrencyConverterUserInterface
                 });
 
                 fiatCurrencyModel = _uiDataProvider.RecieveDataAboutFiatCurreny(fromEnum);
-                var userInputAmount = double.Parse(inputText, CultureInfo.InvariantCulture);
-                var convertionResult = ConvertCurrency(fromEnum, userInputAmount, toEnum);
-                Dispatcher.Invoke(() => fiatCurrancyResultTextBlock.Text = $"{userInputAmount:N} {fromEnum} = {convertionResult:N} {toEnum}");
+                if (fiatCurrencyModel.Date == new DateTime(1970, 1, 1))
+                {
+                    Dispatcher.Invoke(() =>
+                    {
+                        addtionalFiatInformationTextBlock.Text = $"Unable to load data\nCheck your internet connection\nor try again later";
+                        fiatCurrancyResultTextBlock.Text = "";
+                        addtionalFiatInformationTextBlock.Foreground = Brushes.Red;
+                    });
+                }
+                else
+                {
+                    var userInputAmount = double.Parse(inputText, CultureInfo.InvariantCulture);
+                    var convertionResult = ConvertCurrency(fromEnum, userInputAmount, toEnum);
+                    Dispatcher.Invoke(() =>
+                    {
+                        fiatCurrancyResultTextBlock.Text = $"{userInputAmount:N} {fromEnum} = {convertionResult:N} {toEnum}";
+                        addtionalFiatInformationTextBlock.Text = "Information for " + fiatCurrencyModel.Date.ToString("dd/MM/yyyy");
+                        addtionalFiatInformationTextBlock.Foreground = Brushes.Orange;
+                    });
+                }
+
 
                 Dispatcher.Invoke(() =>
                 {
@@ -145,7 +166,7 @@ namespace CryptoCurrencyConverterUserInterface
                 try
                 {
                     Convert.ToDouble(inputText);
-                    LoadDataAboutFiatCurrencyAsync((FiatCurrencyEnum)toIndex, (FiatCurrencyEnum)fromIndex, inputText);   //parameters on different places, beecause after button clicked currencies are swaped
+                    LoadAndDisplayDataAboutFiatCurrencyAsync((FiatCurrencyEnum)toIndex, (FiatCurrencyEnum)fromIndex, inputText);   //parameters on different places, beecause after button clicked currencies are swaped
                 }
                 catch
                 {
@@ -153,6 +174,26 @@ namespace CryptoCurrencyConverterUserInterface
                 }
             }
 
+        }
+
+        private void fiatCurrancyComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int fromIndex = fiatCurrancyFromComboBox.SelectedIndex;
+            int toIndex = fiatCurrancyToComboBox.SelectedIndex;
+
+            var inputText = fiatCurrancyTextBox.Text;
+            if (inputText.Trim().Length > 1)
+            {
+                try
+                {
+                    Convert.ToDouble(inputText);
+                    LoadAndDisplayDataAboutFiatCurrencyAsync((FiatCurrencyEnum)fromIndex, (FiatCurrencyEnum)toIndex, inputText);   
+                }
+                catch
+                {
+
+                }
+            }
         }
     }
 }

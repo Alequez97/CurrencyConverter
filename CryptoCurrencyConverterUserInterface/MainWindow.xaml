@@ -33,14 +33,14 @@
 
                 <TextBlock Text="Fiat currency converter" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="15"/>
 
-                <TextBlock x:Name="fiatCurrancyFromTextBlock" Text="From" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="30" />
-                <TextBlock x:Name="fiatCurrancyToTextBlock" Text="To" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="0" FontSize="30"/>
+                <TextBlock x:Name="fiatCurrancyFromTextBlock" Text="FROM" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="30" />
+                <TextBlock x:Name="fiatCurrancyToTextBlock" Text="TO" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="0" FontSize="30"/>
 
-                <ComboBox x:Name="fiatCurrancyFromComboBox" Grid.Column="0" Grid.Row="1" VerticalContentAlignment = "Center" HorizontalContentAlignment="Center" FontSize="20"></ComboBox>
+                <ComboBox x:Name="fiatCurrancyFromComboBox" Grid.Column="0" Grid.Row="1" VerticalContentAlignment = "Center" HorizontalContentAlignment="Center" FontSize="25" SelectionChanged="fiatCurrancyComboBox_SelectionChanged"></ComboBox>
                 <Button Grid.Column="1" Grid.Row="1" Margin="100 10" Click="Change_Currencies_Button_Click">
                     <Image Source="C://images//replace.jpg" VerticalAlignment="Center" HorizontalAlignment="Center" />
                 </Button>
-                <ComboBox x:Name="fiatCurrancyToComboBox" Grid.Column="2" Grid.Row="1" VerticalContentAlignment = "Center" HorizontalContentAlignment="Center" FontSize="20"></ComboBox>
+                <ComboBox x:Name="fiatCurrancyToComboBox" Grid.Column="2" Grid.Row="1" VerticalContentAlignment = "Center" HorizontalContentAlignment="Center" FontSize="25" SelectionChanged="fiatCurrancyComboBox_SelectionChanged"></ComboBox>
 
                 <StackPanel Grid.Column="1" Grid.Row="2">
                     <TextBlock Text="" FontSize="20" HorizontalAlignment="Center" FontStyle="Italic"/>
@@ -53,7 +53,8 @@
 
                 </StackPanel>
                 <controls:LoadingIndicator x:Name="loadingIndicator" Visibility="Hidden" RenderTransformOrigin="0.17,1.122" Grid.Column="1" Grid.Row="3" Margin="100 30 100 0" />
-                <TextBlock x:Name="fiatCurrancyResultTextBlock" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" FontSize="23"/>
+                <TextBlock x:Name="fiatCurrancyResultTextBlock" Grid.ColumnSpan="3" Grid.Row="5" HorizontalAlignment="Center" FontSize="23" Text=""/>
+                <TextBlock x:Name="addtionalFiatInformationTextBlock" Grid.Column="1" Grid.Row="5" Text="" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
 
             </Grid>
         </TabItem>
@@ -92,7 +93,7 @@
 
                 </StackPanel>
 
-                <TextBlock x:Name="cryptoCurrancyResultTextBlock" Text="10 BTC = 1270 LTC" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" FontSize="28"/>
+                <TextBlock x:Name="cryptoCurrancyResultTextBlock" Text="10 BTC = 1270 LTC" Grid.ColumnSpan="3" Grid.Row="5" HorizontalAlignment="Center" FontSize="28"/>
 
             </Grid>
         </TabItem>
