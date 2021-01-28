@@ -66,7 +66,8 @@
             </Storyboard>
 
             <Style TargetType="Ellipse">
-                <Setter Property="Fill" Value="{Binding ElementName=Root, Path=Foreground}"/>
+                <!--<Setter Property="Fill" Value="{Binding ElementName=Root, Path=Foreground}"/>-->
+                <Setter Property="Fill" Value="#FF08832F"/>
 
             </Style>
         </Grid.Resources>

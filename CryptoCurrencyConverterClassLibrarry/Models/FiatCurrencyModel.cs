@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CryptoCurrencyConverterClassLibrarry
+namespace CryptoCurrencyConverterClassLibrarry.Models
 {
     [Serializable]
     public class FiatCurrencyModel

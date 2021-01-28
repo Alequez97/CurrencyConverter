@@ -56,15 +56,15 @@ namespace CryptoCurrencyConverterUserInterface
             FiatCurrencyEnum toEnum = (FiatCurrencyEnum)fiatCurrancyToComboBox.SelectedIndex;
             var inputText = fiatCurrancyTextBox.Text;
 
-            LoadDataAboutFiatCurrencyAsync(fromEnum, toEnum, inputText);
+            LoadAndDisplayDataAboutFiatCurrencyAsync(fromEnum, toEnum, inputText);
         }
 
-        private void LoadDataAboutFiatCurrencyAsync(FiatCurrencyEnum fromEnum, FiatCurrencyEnum toEnum, string inputText)
+        private void LoadAndDisplayDataAboutFiatCurrencyAsync(FiatCurrencyEnum fromEnum, FiatCurrencyEnum toEnum, string inputText)
         {
-            Task.Run(() => LoadDataAboutFiatCurrency(fromEnum, toEnum, inputText));
+            Task.Run(() => LoadAndDisplayDataAboutFiatCurrency(fromEnum, toEnum, inputText));
         }
 
-        private void LoadDataAboutFiatCurrency(FiatCurrencyEnum fromEnum, FiatCurrencyEnum toEnum, string inputText)
+        private void LoadAndDisplayDataAboutFiatCurrency(FiatCurrencyEnum fromEnum, FiatCurrencyEnum toEnum, string inputText)
         {
             if (fromEnum.ToString().Equals(toEnum.ToString()))
             {
@@ -72,11 +72,22 @@ namespace CryptoCurrencyConverterUserInterface
             }
             else
             {
-                fiatCurrencyModel = _uiDataProvider.RecieveDataAboutFiatCurreny(fromEnum);
+                Dispatcher.Invoke(() =>
+                {
+                    loadingIndicator.Visibility = Visibility.Visible;
+                    cryptoCurrancyConvertButton.Content = "";
+                });
 
+                fiatCurrencyModel = _uiDataProvider.RecieveDataAboutFiatCurreny(fromEnum);
                 var userInputAmount = double.Parse(inputText, CultureInfo.InvariantCulture);
                 var convertionResult = ConvertCurrency(fromEnum, userInputAmount, toEnum);
                 Dispatcher.Invoke(() => fiatCurrancyResultTextBlock.Text = $"{userInputAmount:N} {fromEnum} = {convertionResult:N} {toEnum}");
+
+                Dispatcher.Invoke(() =>
+                {
+                    loadingIndicator.Visibility = Visibility.Hidden;
+                    cryptoCurrancyConvertButton.Content = "Convert";
+                });
             }
         }
 
@@ -104,7 +115,7 @@ namespace CryptoCurrencyConverterUserInterface
             {
                 Convert.ToDouble(inputText);
             }
-            catch 
+            catch
             {
                 fiatCurrencyErrorLabel.Content = "Error. Please input correct number";
                 fiatCurrancyTextBox.BorderBrush = Brushes.Red;
@@ -127,6 +138,21 @@ namespace CryptoCurrencyConverterUserInterface
 
             fiatCurrancyFromComboBox.SelectedIndex = toIndex;
             fiatCurrancyToComboBox.SelectedIndex = fromIndex;
+
+            var inputText = fiatCurrancyTextBox.Text;
+            if (inputText.Trim().Length > 1)
+            {
+                try
+                {
+                    Convert.ToDouble(inputText);
+                    LoadDataAboutFiatCurrencyAsync((FiatCurrencyEnum)toIndex, (FiatCurrencyEnum)fromIndex, inputText);   //parameters on different places, beecause after button clicked currencies are swaped
+                }
+                catch
+                {
+
+                }
+            }
+
         }
     }
 }

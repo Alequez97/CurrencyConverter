@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using CryptoCurrencyConverterClassLibrarry.Models;
 
-namespace CryptoCurrencyConverterClassLibrarry
+namespace CryptoCurrencyConverterClassLibrarry.Interfaces
 {
     public interface IFiatDataLoader
     {

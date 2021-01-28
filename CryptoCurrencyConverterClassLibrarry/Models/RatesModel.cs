@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CryptoCurrencyConverterClassLibrarry
+namespace CryptoCurrencyConverterClassLibrarry.Models
 {
     [Serializable]
     public class RatesModel

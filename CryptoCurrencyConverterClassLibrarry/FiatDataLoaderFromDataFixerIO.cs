@@ -6,10 +6,12 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using CryptoCurrencyConverterClassLibrarry.Interfaces;
+using CryptoCurrencyConverterClassLibrarry.Models;
 
 namespace CryptoCurrencyConverterClassLibrarry
 {
-    public class FiatDataLoaderFromDataFixerIO
+    public class FiatDataLoaderFromDataFixerIO : IFiatDataLoader
     {
 
         private readonly string urlBase = "https://api.exchangeratesapi.io/latest?";
@@ -41,9 +43,6 @@ namespace CryptoCurrencyConverterClassLibrarry
                     var convertedData = JsonConvert.DeserializeObject<FiatCurrencyModel>(data);
                     return convertedData;
 
-                    //string fileName = baseCurrency.ToString() + ".txt";
-                    //var serializer = new ObjectSerializerDeserializer<FiatCurrencyModel>(_filePathBase + fileName);
-                    //serializer.SerializeObject(convertedData);
                 }
                 else
                 {
