@@ -4,14 +4,14 @@ using System.Text;
 
 namespace CryptoCurrencyConverterClassLibrarry.Interfaces
 {
-    public interface IDataCache<TModel> where TModel : class
+    public interface IDataCache<TModel>
     {
 
-        bool CheckIfDataIsCached();
+        bool DataIsCached(string fileName);
 
-        TModel LoadCachedData();
+        TModel LoadCachedData(string fileName);
 
-        bool SaveDataToCache(TModel model);
+        bool SaveDataToCache(TModel model, string fileName);
 
     }
 }
