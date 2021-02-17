@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CryptoCurrencyConverterClassLibrarry
+namespace CurrencyConverterClassLibrarry
 {
     public enum FiatCurrencyEnum
     {

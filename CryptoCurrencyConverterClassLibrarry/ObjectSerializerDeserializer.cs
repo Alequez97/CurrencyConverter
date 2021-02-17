@@ -2,7 +2,7 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace CryptoCurrencyConverterClassLibrarry
+namespace CurrencyConverterClassLibrarry
 {
     /// <summary>
     /// Provides serialization and deserialization for any type of objects.

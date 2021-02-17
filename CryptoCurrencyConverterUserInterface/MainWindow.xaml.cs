@@ -1,5 +1,5 @@
-﻿using CryptoCurrencyConverterClassLibrarry;
-using CryptoCurrencyConverterClassLibrarry.Models;
+﻿using CurrencyConverterClassLibrarry;
+using CurrencyConverterClassLibrarry.Models;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -18,7 +18,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 
-namespace CryptoCurrencyConverterUserInterface
+namespace CurrencyConverterUserInterface
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -68,7 +68,6 @@ namespace CryptoCurrencyConverterUserInterface
 
         private void LoadAndDisplayDataAboutFiatCurrency(FiatCurrencyEnum fromEnum, FiatCurrencyEnum toEnum, string inputText)
         {
-            
             if (fromEnum.ToString().Equals(toEnum.ToString()))
             {
                 Dispatcher.Invoke(() => fiatCurrancyResultTextBlock.Text = $"{double.Parse(inputText):N} {fromEnum} = {double.Parse(inputText):N} {toEnum}");
@@ -80,6 +79,7 @@ namespace CryptoCurrencyConverterUserInterface
                     loadingIndicator.Visibility = Visibility.Visible;
                     cryptoCurrancyConvertButton.Content = "";
                 });
+
 
                 fiatCurrencyModel = _uiDataProvider.RecieveDataAboutFiatCurreny(fromEnum);
                 if (fiatCurrencyModel.Date == new DateTime(1970, 1, 1))
@@ -187,7 +187,7 @@ namespace CryptoCurrencyConverterUserInterface
                 try
                 {
                     Convert.ToDouble(inputText);
-                    LoadAndDisplayDataAboutFiatCurrencyAsync((FiatCurrencyEnum)fromIndex, (FiatCurrencyEnum)toIndex, inputText);   
+                    LoadAndDisplayDataAboutFiatCurrencyAsync((FiatCurrencyEnum)fromIndex, (FiatCurrencyEnum)toIndex, inputText);
                 }
                 catch
                 {

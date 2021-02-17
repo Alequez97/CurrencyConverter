@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CryptoCurrencyConverterUserInterface.UserControls
+namespace CurrencyConverterUserInterface.UserControls
 {
     /// <summary>
     /// Interaction logic for LoadingIndicator.xaml

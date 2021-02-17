@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CryptoCurrencyConverterClassLibrarry.Interfaces
+namespace CurrencyConverterClassLibrarry.Interfaces
 {
     public interface IDataCache<TModel>
     {

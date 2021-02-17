@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using CryptoCurrencyConverterClassLibrarry.Interfaces;
+using CurrencyConverterClassLibrarry.Interfaces;
 
-namespace CryptoCurrencyConverterClassLibrarry
+namespace CurrencyConverterClassLibrarry
 {
     public class DataToFileCache<TModel> : IDataCache<TModel> where TModel : class
     {

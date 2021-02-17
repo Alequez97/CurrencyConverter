@@ -6,10 +6,10 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using CryptoCurrencyConverterClassLibrarry.Interfaces;
-using CryptoCurrencyConverterClassLibrarry.Models;
+using CurrencyConverterClassLibrarry.Interfaces;
+using CurrencyConverterClassLibrarry.Models;
 
-namespace CryptoCurrencyConverterClassLibrarry
+namespace CurrencyConverterClassLibrarry
 {
     public class FiatDataLoaderFromDataFixerIO : IFiatDataLoader
     {

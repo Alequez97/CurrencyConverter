@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 
-namespace CryptoCurrencyConverterClassLibrarry
+namespace CurrencyConverterClassLibrarry
 {
     public sealed class ApiHelperClass
     {

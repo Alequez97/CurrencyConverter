@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading;
-using CryptoCurrencyConverterClassLibrarry.Interfaces;
-using CryptoCurrencyConverterClassLibrarry.Models;
+using CurrencyConverterClassLibrarry.Interfaces;
+using CurrencyConverterClassLibrarry.Models;
 
-namespace CryptoCurrencyConverterClassLibrarry
+namespace CurrencyConverterClassLibrarry
 {
     public class UiDataProvider
     {
