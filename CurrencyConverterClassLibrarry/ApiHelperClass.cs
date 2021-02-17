@@ -4,6 +4,10 @@ using System.Net.Http.Headers;
 
 namespace CurrencyConverterClassLibrarry
 {
+
+    /// <summary>
+    /// Class that gives httpClient class instance
+    /// </summary>
     public sealed class ApiHelperClass
     {
 

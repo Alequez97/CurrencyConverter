@@ -8,20 +8,27 @@ using CurrencyConverterClassLibrarry.Models;
 
 namespace CurrencyConverterClassLibrarry
 {
+    /// <summary>
+    /// Class that provides data for ui layer
+    /// </summary>
     public class UiDataProvider
     {
 
         private IFiatDataLoader fiatDataLoader;
         private IDataCache<FiatCurrencyModel> dataCache;
 
-        private FiatCurrencyModel cachedFiatCurrencyModel = new FiatCurrencyModel() { Date = new DateTime(1970, 1, 1) };  //To check if something was possible to load
-
+        private FiatCurrencyModel cachedFiatCurrencyModel = new FiatCurrencyModel() { Date = new DateTime(1970, 1, 1) };  //To check if something was possible to load 
+                                                                                                                          //creating instance with default paramtres
         public UiDataProvider()
         {
             fiatDataLoader = new FiatDataLoaderFromDataFixerIO();
-            
         }
 
+        /// <summary>
+        /// Load data about currency exchange rates
+        /// </summary>
+        /// <param name="fiatCurrencyEnum">Fiat currency enum</param>
+        /// <returns>Objects that contains data about currency rates</returns>
         public FiatCurrencyModel RecieveDataAboutFiatCurreny(FiatCurrencyEnum fiatCurrencyEnum)
         {
             dataCache = new DataToFileCache<FiatCurrencyModel>();
@@ -47,6 +54,7 @@ namespace CurrencyConverterClassLibrarry
                 return TryLoadDataFromApi(fiatCurrencyEnum);
             }
         }
+
 
         private FiatCurrencyModel TryLoadDataFromApi(FiatCurrencyEnum fiatCurrencyEnum)
         {

@@ -6,17 +6,21 @@ using CurrencyConverterClassLibrarry.Interfaces;
 
 namespace CurrencyConverterClassLibrarry
 {
-    public class DataToFileCache<TModel> : IDataCache<TModel> where TModel : class
+    /// <summary>
+    /// Class that saves loaded data to file
+    /// If actual data won't be loaded, last possible data will be loaded from file
+    /// </summary>
+    /// <typeparam name="TCurrencyModel">Currency moodel that need to be cached</typeparam>
+    public class DataToFileCache<TCurrencyModel> : IDataCache<TCurrencyModel> where TCurrencyModel : class
     {
         private string _filePathBase;
-        private ObjectSerializerDeserializer<TModel> serializerDeserializer;
-        private TModel obj;
-
+        private ObjectSerializerDeserializer<TCurrencyModel> serializerDeserializer;
+        private TCurrencyModel obj;
 
         public DataToFileCache()
         {
             _filePathBase = Path.GetTempPath();
-            serializerDeserializer = new ObjectSerializerDeserializer<TModel>();
+            serializerDeserializer = new ObjectSerializerDeserializer<TCurrencyModel>();
         }
 
         public bool DataIsCached(string fileName)
@@ -35,13 +39,13 @@ namespace CurrencyConverterClassLibrarry
             }
         }
 
-        public TModel LoadCachedData(string fileName)
+        public TCurrencyModel LoadCachedData(string fileName)
         {
             if (obj == null) obj = serializerDeserializer.DeserializeObject(fileName);
             return (obj != null) ? obj : throw new Exception("Can't load data"); 
         }
 
-        public bool SaveDataToCache(TModel model, string fileName)
+        public bool SaveDataToCache(TCurrencyModel model, string fileName)
         {
             try
             {

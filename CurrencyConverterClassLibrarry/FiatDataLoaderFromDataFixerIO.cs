@@ -11,6 +11,9 @@ using CurrencyConverterClassLibrarry.Models;
 
 namespace CurrencyConverterClassLibrarry
 {
+    /// <summary>
+    /// Class that loads data about fiat currency rates
+    /// </summary>
     public class FiatDataLoaderFromDataFixerIO : IFiatDataLoader
     {
 

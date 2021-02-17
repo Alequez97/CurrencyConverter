@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurrencyConverterClassLibrarry", "CryptoCurrencyConverterClassLibrarry\CurrencyConverterClassLibrarry.csproj", "{53980B14-82A5-4A74-A6FC-0090AE894C9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurrencyConverterClassLibrarry", "CurrencyConverterClassLibrarry\CurrencyConverterClassLibrarry.csproj", "{53980B14-82A5-4A74-A6FC-0090AE894C9A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurrencyConverterUserInterface", "CryptoCurrencyConverterUserInterface\CurrencyConverterUserInterface.csproj", "{8ECFF15D-971B-4D4C-A538-7A274A927BA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurrencyConverterUserInterface", "CurrencyConverterUserInterface\CurrencyConverterUserInterface.csproj", "{8ECFF15D-971B-4D4C-A538-7A274A927BA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

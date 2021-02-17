@@ -6,7 +6,7 @@ namespace CurrencyConverterClassLibrarry
 {
     /// <summary>
     /// Provides serialization and deserialization for any type of objects.
-    /// Takes file path in constuctor
+    /// Saves files in temp folder
     /// </summary>
     public class ObjectSerializerDeserializer<T> where T : class
     {
